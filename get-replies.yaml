@@ -1,0 +1,107 @@
+swagger: '2.0'
+info: {title: MSGraph_Teams-replies, description: Connector to enable IST-teams chat
+    analytics, version: '1.0'}
+host: graph.microsoft.com
+basePath: /beta
+schemes: [https]
+consumes: []
+produces: []
+paths:
+  ? /teams/02bd9fd6-8f93-4758-87c3-1fb73740a315/channels/19:d0bba23c2fc8413991125a43a54cc30e@thread.skype/messages/1501527481624/replies
+  : {}
+  /teams/{group-id-for-teams}/channels/{channel-id}/messages/{message-id}/replies:
+    get:
+      responses:
+        default:
+          description: default
+          schema:
+            type: object
+            properties:
+              '@odata.context': {type: string, description: '@odata.context'}
+              '@odata.count': {type: integer, format: int32, description: '@odata.count'}
+              '@odata.nextLink': {type: string, description: '@odata.nextLink'}
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: {type: string, description: id}
+                    replyToId: {type: string, description: replyToId}
+                    etag: {type: string, description: etag}
+                    messageType: {type: string, description: messageType}
+                    createdDateTime: {type: string, description: createdDateTime}
+                    lastModifiedDateTime: {type: string, description: lastModifiedDateTime}
+                    lastEditedDateTime: {type: string, description: lastEditedDateTime}
+                    deletedDateTime: {type: string, description: deletedDateTime}
+                    subject: {type: string, description: subject}
+                    summary: {type: string, description: summary}
+                    chatId: {type: string, description: chatId}
+                    importance: {type: string, description: importance}
+                    locale: {type: string, description: locale}
+                    webUrl: {type: string, description: webUrl}
+                    policyViolation: {type: string, description: policyViolation}
+                    eventDetail: {type: string, description: eventDetail}
+                    from:
+                      type: object
+                      properties:
+                        application: {type: string, description: application}
+                        device: {type: string, description: device}
+                        user:
+                          type: object
+                          properties:
+                            id: {type: string, description: id}
+                            displayName: {type: string, description: displayName}
+                            userIdentityType: {type: string, description: userIdentityType}
+                          description: user
+                      description: from
+                    body:
+                      type: object
+                      properties:
+                        contentType: {type: string, description: contentType}
+                        content: {type: string, description: content}
+                      description: body
+                    channelIdentity:
+                      type: object
+                      properties:
+                        teamId: {type: string, description: teamId}
+                        channelId: {type: string, description: channelId}
+                      description: channelIdentity
+                    attachments:
+                      type: array
+                      items: {}
+                      description: attachments
+                    mentions:
+                      type: array
+                      items: {}
+                      description: mentions
+                    reactions:
+                      type: array
+                      items: {}
+                      description: reactions
+                description: value
+          headers:
+            client-request-id: {description: client-request-id, type: string}
+            content-type: {description: content-type, type: string}
+            request-id: {description: request-id, type: string}
+      summary: Get Replies to specific Teams Message
+      description: message-id/replies
+      operationId: get_replies
+      x-ms-pageable: {nextLinkName: '@odata.nextLink'}
+      parameters:
+      - {name: group-id-for-teams, in: path, required: true, type: string}
+      - {name: channel-id, in: path, required: true, type: string}
+      - {name: message-id, in: path, required: true, type: string}
+      x-ms-visibility: important
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  oauth2_auth:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://login.windows.net/common/oauth2/authorize
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes: {'https://graph.microsoft.com/.default': 'https://graph.microsoft.com/.default'}
+security:
+- oauth2_auth: ['https://graph.microsoft.com/.default']
+tags: []
